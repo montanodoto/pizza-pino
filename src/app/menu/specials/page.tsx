@@ -1,44 +1,46 @@
-function Specials() {
+import Breadcrumb from "@/app/components/breadcrumb";
+import Products from "@/app/components/products/products";
+import { useEffect } from "react";
+
+async function getData() {
+  const form_data = new FormData();
+  form_data.append("token", "10284300000000000000000006412610");
+  form_data.append("group", "01");
+
+  const requestOptions: any = {
+    method: "POST",
+    body: form_data,
+    redirect: "follow",
+  };
+
+  try {
+    const products = await fetch("https://ginospizza.ca/app/api/menu/group/", {
+      ...requestOptions,
+    }).then((response) => response.json());
+
+    return products;
+  } catch (err) {
+    throw new Error("Failed to fetch data");
+  }
+}
+
+async function Specials() {
+  const products = await getData();
+
   return (
     <article>
-      <div className="container">
-        <ul className="list--breadcrumbs">
-          <li className="list--breadcrumbs__crumb">
-            <a
-              href="/"
-              title="Gino's Pizza Inc."
-              className="list--breadcrumbs__crumb__link"
-            >
-              Gino&apos;s Pizza Inc.
-            </a>
-          </li>
-          <li className="list--breadcrumbs__crumb">
-            <a
-              href="/menu/"
-              title="Menu"
-              className="list--breadcrumbs__crumb__link"
-            >
-              Menu
-            </a>
-          </li>
-        </ul>
-      </div>
+      <Breadcrumb title="Menu" href="/menu/" />
       <div className="container container--slim--y">
         <div className="flexrow">
           <div className="flexrow__column flexrow__column--content">
-            <div className="flexrow__gutter">
-              <div className="flexrow__column--content__backdrop">
-                <div className="flexrow__gutter flexrow__gutter--double">
-                  <div className="form__response form__response--widget form__response--error gutter--bottom--none">
-                    <strong>
-                      <a href="/menu/" title="Set your location">
-                        Set your location
-                      </a>
-                      to view item availability and pricing.
-                    </strong>
-                  </div>
-                </div>
-              </div>
+            <div className="flexrow__gutter bg-white">
+              <Products products={products} />
+              <strong>
+                <a href="/menu/" title="Set your location">
+                  Set your location
+                </a>
+                to view item availability and pricing.
+              </strong>
             </div>
           </div>
           <div className="flexrow__column flexrow__column--sidebar">

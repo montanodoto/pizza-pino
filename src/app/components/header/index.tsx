@@ -90,7 +90,7 @@ function Header() {
             <ul id="menu-top-menu" className="menu">
               {nav_elements.map((nav) => (
                 <li
-                  onMouseMove={() => setSubNav(nav.name)}
+                  onMouseMove={() => setSubNav(nav.sub ? nav.name : "")}
                   onMouseLeave={() => setSubNav("")}
                   className={`menu-item ${
                     subNav === nav.name ? "menu-open" : ""

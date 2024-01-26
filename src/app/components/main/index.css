@@ -1,0 +1,8 @@
+.slider-image {
+    transition: transform 0.5s ease-in-out;
+  }
+  
+.slider-image.active {
+    transform: translateX(0%);
+}
+  

@@ -1,4 +1,46 @@
+"use client";
+import { usePathname } from "next/navigation";
+import { useState } from "react";
+
+const nav_elements = [
+  {
+    name: "menu",
+    title: "MENU",
+    href: "/menu",
+    isOpen: false,
+    sub: [
+      { title: "Specials", name: "Specials", href: "/menu/specials/" },
+      {
+        title: "Gourmet Pizzas",
+        name: "Gourmet Pizzas",
+        href: "/menu/gourmetpizzas/",
+      },
+      { title: "Pizzas", name: "Pizzas", href: "/menu/pizzas/" },
+      { title: "Wings", name: "Wings", href: "/menu/wings/" },
+      { title: "Sides", name: "Sides", href: "/menu/sides/" },
+      {
+        title: "Desserts &amp; Chips",
+        name: "Desserts &amp; Chips",
+        href: "/menu/desserts/",
+      },
+      { title: "Panzerotti", name: "Panzerotti", href: "/menu/panzerotti/" },
+    ],
+  },
+  {
+    name: "locations",
+    title: "LOCATIONS",
+    href: "/locations",
+  },
+  {
+    name: "our_story",
+    title: "OUR STORY",
+    href: "/our-story",
+  },
+];
+
 function Header() {
+  const [subNav, setSubNav] = useState("");
+  const pathname = usePathname();
   return (
     <>
       <header id="userBar" className="top-bar">
@@ -30,7 +72,12 @@ function Header() {
           </span>
         </div>
       </header>
-      <header id="primaryNav" className="navbar navbar--primary">
+      <header
+        id="primaryNav"
+        className={`navbar navbar--primary ${
+          pathname === "menu" && "navbar--stuck"
+        }`}
+      >
         <div className="container container--navbar">
           <a
             href="/"
@@ -41,64 +88,31 @@ function Header() {
           </a>
           <nav id="topMenu">
             <ul id="menu-top-menu" className="menu">
-              <li className="menu-item menu-item-has-children">
-                <a href="/menu/" title="Menu">
-                  Menu
-                </a>
-                <ul className="sub-menu">
-                  <li className="menu-item">
-                    <a href="/menu/specials/" title="Specials">
-                      Specials
-                    </a>
-                  </li>
-                  <li className="menu-item">
-                    <a href="/menu/gourmetpizzas/" title="Gourmet Pizzas">
-                      Gourmet Pizzas
-                    </a>
-                  </li>
-                  <li className="menu-item">
-                    <a href="/menu/pizzas/" title="Pizzas">
-                      Pizzas
-                    </a>
-                  </li>
-                  <li className="menu-item">
-                    <a href="/menu/wings/" title="Wings">
-                      {" "}
-                      Wings
-                    </a>
-                  </li>
-                  <li className="menu-item">
-                    <a href="/menu/sides/" title="Sides">
-                      Sides
-                    </a>
-                  </li>
-                  <li className="menu-item">
-                    <a href="/menu/beverages/" title="Beverages">
-                      Beverages
-                    </a>
-                  </li>
-                  <li className="menu-item">
-                    <a href="/menu/desserts/" title="Desserts &amp; Chips">
-                      Desserts &amp; Chips
-                    </a>
-                  </li>
-                  <li className="menu-item">
-                    <a href="/menu/panzerotti/" title="Panzerotti">
-                      Panzerotti
-                    </a>
-                  </li>
-                </ul>
-              </li>
-              <li className="menu-item">
-                <a href="/locations/" title="Locations">
-                  Locations
-                </a>
-              </li>
-              <li className="menu-item">
-                <a href="/our-story/" title="Our Story">
-                  Our Story
-                </a>
-              </li>
+              {nav_elements.map((nav) => (
+                <li
+                  onMouseMove={() => setSubNav(nav.name)}
+                  onMouseLeave={() => setSubNav("")}
+                  className={`menu-item ${
+                    subNav === nav.name ? "menu-open" : ""
+                  } ${nav.sub ? "menu-item-has-children" : ""}`}
+                  key={nav.href}
+                >
+                  <a href={nav.href} title={nav.title}>
+                    {nav.title}
+                  </a>
+                  {nav?.sub && (
+                    <ul className="sub-menu">
+                      {nav.sub.map((sub) => (
+                        <li className="menu-item" key={sub.name}>
+                          <a href={sub.href} title={sub.title}>
+                            {sub.title}
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </li>
+              ))}
             </ul>
           </nav>
           <div className="navbar-cta navbar-cta--desktop">

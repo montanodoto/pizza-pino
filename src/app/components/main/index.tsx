@@ -1,296 +1,109 @@
 /* eslint-disable @next/next/no-img-element */
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import initial_locations from "./data";
+import Image from "next/image";
+
+import "./index.css";
+import Hero from "../hero";
+
+const pictures = [
+  "/10kGiftCard.png?ver=2024.1.6",
+  "/NowOpenBaylySt.png?ver=2024.1.6",
+  "/MustangWinner.png?ver=2024.1.6",
+  "/OpeningSoon2024.png?ver=2024.1.6",
+  "/tandoori-chicken-banner.png?ver=2024.1.6",
+];
 
 function Main() {
   const [locations, setLocations] = useState(initial_locations);
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  useEffect(() => {
+    const slide_interval = setInterval(
+      () =>
+        setCurrentSlide((prevSlide) =>
+          currentSlide === 4 ? 0 : prevSlide + 1
+        ),
+      2000
+    );
+
+    return () => {
+      clearInterval(slide_interval);
+    };
+  }, [currentSlide]);
+
+  const handleSlide = (direction: "next" | "previous") => {
+    setCurrentSlide((prevSlide) => {
+      if (direction === "next") {
+        return (prevSlide + 1) % pictures.length;
+      } else {
+        return (prevSlide - 1 + pictures.length) % pictures.length;
+      }
+    });
+  };
+
   return (
-    <main className="canvas">
-      <article>
-        <div className="hero">
-          <div id="carousel" className="flickity-enabled" tabIndex={0}>
-            <div className="flickity-viewport" style={{ touchAction: "pan-y" }}>
-              <div
-                className="flickity-slider"
-                style={{ left: 0, transform: "translateX(-100%)" }}
-              >
-                <picture
-                  className="cover"
-                  //   aria-hidden={true}
+    <article>
+      <div className="container">
+        <div id="carousel" className="flickity-enabled" tabIndex={0}>
+          <div className="flickity-viewport" style={{ touchAction: "pan-y" }}>
+            <div className="flickity-slider">
+              {pictures.map((src, index) => (
+                <Image
+                  src={src}
+                  key={index}
+                  alt=""
+                  fill={true}
+                  className={`slider-image ${
+                    index === currentSlide ? "active" : ""
+                  }`}
                   style={{
-                    position: "absolute",
-                    left: 0,
-                    transform: "translateX(0%)",
+                    transform: `translateX(${(index - currentSlide) * 100}%)`,
                   }}
-                >
-                  <source
-                    media="(min-width: 90em)"
-                    srcSet="/10kGiftCard.png?ver=2024.1.6"
-                  />
-                  <source
-                    media="(min-width: 75em)"
-                    srcSet="/10kGiftCard@0.5x.png?ver=2024.1.6"
-                  />
-                  <source
-                    media="(min-width: 60em)"
-                    srcSet="/10kGiftCard@0.33x.png?ver=2024.1.6"
-                  />
-                  <source
-                    media="(min-width: 15em)"
-                    srcSet="/10kGiftCard@0.25x.png?ver=2024.1.6"
-                  />
-                  <a
-                    href="/menu/"
-                    title="Ontario’s Best Pizza — Order Online or Call 1 (866) 310-4466"
-                  >
-                    <img
-                      src="/10kGiftCard.png?ver=2024.1.6"
-                      alt="Ontario’s Best Pizza — Order Online or Call 1 (866) 310-4466"
-                      className="cover__image"
-                    />
-                  </a>
-                </picture>
-                <picture
-                  className="cover is-selected"
-                  style={{
-                    position: "absolute",
-                    left: 0,
-                    transform: "translateX(100%)",
-                  }}
-                >
-                  <source
-                    media="(min-width: 90em)"
-                    srcSet="/NowOpenBaylySt.png?ver=2024.1.6"
-                  />
-                  <source
-                    media="(min-width: 75em)"
-                    srcSet="
-                      /public/N.5x.png?ver=2024.1.6
-                    "
-                  />
-                  <source
-                    media="(min-width: 60em)"
-                    srcSet="
-                      /public/N.33x.png?ver=2024.1.6
-                    "
-                  />
-                  <source
-                    media="(min-width: 15em)"
-                    srcSet="
-                      /public/N.25x.png?ver=2024.1.6
-                    "
-                  />
-                  <a
-                    href="/menu/"
-                    title="Ontario’s Best Pizza — Order Online or Call 1 (866) 310-4466"
-                  >
-                    <img
-                      src="/NowOpenBaylySt.png?ver=2024.1.6"
-                      alt="Ontario’s Best Pizza — Order Online or Call 1 (866) 310-4466"
-                      className="cover__image"
-                    />
-                  </a>
-                </picture>
-                <picture
-                  className="cover"
-                  //   aria-hidden="true"
-                  style={{
-                    position: "absolute",
-                    left: 0,
-                    transform: "translateX(200%)",
-                  }}
-                >
-                  <source
-                    media="(min-width: 90em)"
-                    srcSet="/MustangWinner.png?ver=2024.1.6"
-                  />
-                  <source
-                    media="(min-width: 75em)"
-                    srcSet="/MustangWinner@0.5x.png?ver=2024.1.6"
-                  />
-                  <source
-                    media="(min-width: 60em)"
-                    srcSet="
-                      /public/M.33x.png?ver=2024.1.6
-                    "
-                  />
-                  <source
-                    media="(min-width: 15em)"
-                    srcSet="
-                      /public/M.25x.png?ver=2024.1.6
-                    "
-                  />
-                  <a
-                    href="/menu/"
-                    title="Ontario’s Best Pizza — Order Online or Call 1 (866) 310-4466"
-                  >
-                    <img
-                      src="/MustangWinner.png?ver=2024.1.6"
-                      alt="Ontario’s Best Pizza — Order Online or Call 1 (866) 310-4466"
-                      className="cover__image"
-                    />
-                  </a>
-                </picture>
-                <picture
-                  className="cover"
-                  //   aria-hidden="true"
-                  style={{
-                    position: "absolute",
-                    left: 0,
-                    transform: "translate(300%)",
-                  }}
-                >
-                  <source
-                    media="(min-width: 90em)"
-                    srcSet="/OpeningSoon2024.png?ver=2024.1.6"
-                  />
-                  <source
-                    media="(min-width: 75em)"
-                    srcSet="
-                      /public/O.5x.png?ver=2024.1.6
-                    "
-                  />
-                  <source
-                    media="(min-width: 60em)"
-                    srcSet="
-                      /public/O.33x.png?ver=2024.1.6
-                    "
-                  />
-                  <source
-                    media="(min-width: 15em)"
-                    srcSet="
-                      /public/O.25x.png?ver=2024.1.6
-                    "
-                  />
-                  <a
-                    href="/menu/"
-                    title="Ontario’s Best Pizza — Order Online or Call 1 (866) 310-4466"
-                  >
-                    <img
-                      src="/OpeningSoon2024.png?ver=2024.1.6"
-                      alt="Ontario’s Best Pizza — Order Online or Call 1 (866) 310-4466"
-                      className="cover__image"
-                    />
-                  </a>
-                </picture>
-                <picture
-                  className="cover"
-                  //   aria-hidden="true"
-                  style={{
-                    position: "absolute",
-                    left: 0,
-                    transform: "translateX(400%)",
-                  }}
-                >
-                  <source
-                    media="(min-width: 90em)"
-                    srcSet="
-                      /public/t-banner.png?ver=2024.1.6
-                    "
-                  />
-                  <source
-                    media="(min-width: 75em)"
-                    srcSet="
-                      /public/t-banner@0.5x.png?ver=2024.1.6
-                    "
-                  />
-                  <source
-                    media="(min-width: 60em)"
-                    srcSet="
-                      /public/t-banner@0.33x.png?ver=2024.1.6
-                    "
-                  />
-                  <source
-                    media="(min-width: 15em)"
-                    srcSet="
-                      /public/t-banner@0.25x.png?ver=2024.1.6
-                    "
-                  />
-                  <a
-                    href="/menu/"
-                    title="Ontario’s Best Pizza — Order Online or Call 1 (866) 310-4466"
-                  >
-                    <img
-                      src="/tandoori-chicken-banner.png?ver=2024.1.6"
-                      alt="Ontario’s Best Pizza — Order Online or Call 1 (866) 310-4466"
-                      className="cover__image"
-                    />
-                  </a>
-                </picture>
-              </div>
+                />
+              ))}
             </div>
-            <button
-              className="flickity-button flickity-prev-next-button previous"
-              type="button"
-              aria-label="Previous"
-            >
-              <svg className="flickity-button-icon" viewBox="0 0 100 100">
-                <path
-                  d="M 10,50 L 60,100 L 70,90 L 30,50  L 70,10 L 60,0 Z"
-                  className="arrow"
-                ></path>
-              </svg>
-            </button>
-            <button
-              className="flickity-button flickity-prev-next-button next"
-              type="button"
-              aria-label="Next"
-            >
-              <svg className="flickity-button-icon" viewBox="0 0 100 100">
-                <path
-                  d="M 10,50 L 60,100 L 70,90 L 30,50  L 70,10 L 60,0 Z"
-                  className="arrow"
-                  transform="translate(100, 100) rotate(180) "
-                ></path>
-              </svg>
-            </button>
-            <ol className="flickity-page-dots">
-              <li className="dot" aria-label="Page dot 1"></li>
+          </div>
+          <button
+            onClick={() => handleSlide("previous")}
+            className="flickity-button flickity-prev-next-button previous"
+            type="button"
+            aria-label="Previous"
+          >
+            <svg className="flickity-button-icon" viewBox="0 0 100 100">
+              <path
+                d="M 10,50 L 60,100 L 70,90 L 30,50  L 70,10 L 60,0 Z"
+                className="arrow"
+              ></path>
+            </svg>
+          </button>
+          <button
+            onClick={() => handleSlide("next")}
+            className="flickity-button flickity-prev-next-button next"
+            type="button"
+            aria-label="Next"
+          >
+            <svg className="flickity-button-icon" viewBox="0 0 100 100">
+              <path
+                d="M 10,50 L 60,100 L 70,90 L 30,50  L 70,10 L 60,0 Z"
+                className="arrow"
+                transform="translate(100, 100) rotate(180) "
+              ></path>
+            </svg>
+          </button>
+          <ol className="flickity-page-dots">
+            {pictures.map((_, index) => (
               <li
-                className="dot is-selected"
-                aria-label="Page dot 2"
-                aria-current="step"
+                key={index}
+                className={`dot ${index === currentSlide ? "is-selected" : ""}`}
+                aria-label={`Page dot ${index + 1}`}
+                aria-current={index === currentSlide ? "step" : undefined}
               ></li>
-              <li className="dot" aria-label="Page dot 3"></li>
-              <li className="dot" aria-label="Page dot 4"></li>
-              <li className="dot" aria-label="Page dot 5"></li>
-            </ol>
-          </div>
-          <a href="/menu/" className="hero-cta--mobile" title="Order Online">
-            <span className="navbar-cta--desktop__link--button__icon">
-              Order Online
-            </span>
-          </a>
-          <div className="hero-cta--desktop">
-            <div className="container container--lg container--slim--y">
-              <div className="flexrow flexrow--vert-center flexrow--nowrap">
-                <div className="flexrow__column">
-                  <div className="flexrow__gutter">
-                    <span className="hero-cta--desktop__daily-deal hero-cta--desktop__daily-deal--large">
-                      Pizzas, wings, and more!{" "}
-                    </span>
-                    <span className="hero-cta--desktop__default hero-cta--desktop__default--small">
-                      Check out all the best Gino’s Pizza offers and promotions!
-                    </span>
-                  </div>
-                </div>
-                <div className="flexrow__column flexrow__column--shrink">
-                  <div className="flexrow__gutter">
-                    <a
-                      href="/menu/"
-                      title="View Menu"
-                      rel="nofollow"
-                      className="button button--large button--negative"
-                    >
-                      View Menu
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+            ))}
+          </ol>
         </div>
+        {/* <Hero /> */}
         <section id="locationFinder" className="text--center">
           <div className="container">
             <h1 className="title title--large caps">
@@ -309,7 +122,7 @@ function Main() {
             >
               <div className="form__wrap form__wrap--search">
                 <select size={1} className="form__wrap__select" rel="required">
-                  <option value="-1" disabled={false} selected={false}>
+                  <option value="-1" disabled={false}>
                     Select a Location *
                   </option>
                   {locations.map((location) => (
@@ -427,8 +240,8 @@ function Main() {
             </div>
           </div>
         </section>
-      </article>
-    </main>
+      </div>
+    </article>
   );
 }
 

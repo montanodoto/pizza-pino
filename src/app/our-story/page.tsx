@@ -1,4 +1,3 @@
-import AuthModal from "../components/auth_modal";
 import Breadcrumb from "../components/breadcrumb";
 
 function OurStory() {

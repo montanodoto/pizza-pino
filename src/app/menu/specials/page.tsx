@@ -1,6 +1,8 @@
+import AuthModal from "@/app/components/auth_modal";
 import Breadcrumb from "@/app/components/breadcrumb";
 import Products from "@/app/components/products/products";
-import { useEffect } from "react";
+import DeliverySignInModal from "@/app/components/delivery_signin_modal";
+import { useState } from "react";
 
 async function getData() {
   const form_data = new FormData();
@@ -18,17 +20,18 @@ async function getData() {
       ...requestOptions,
     }).then((response) => response.json());
 
-    return products;
+    return { products, isLoggedIn: false };
   } catch (err) {
     throw new Error("Failed to fetch data");
   }
 }
 
 async function Specials() {
-  const products = await getData();
+  const { products, isLoggedIn } = await getData();
 
   return (
     <article>
+      {isLoggedIn && <DeliverySignInModal />}
       <Breadcrumb title="Menu" href="/menu/" />
       <div className="container container--slim--y">
         <div className="flexrow">

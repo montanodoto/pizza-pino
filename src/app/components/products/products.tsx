@@ -2,7 +2,7 @@
 // pages/index.js or src/pages/index.js
 import ProductItem from "@/app/components/products/product_item"; // adjust the path according to your project structure
 import PriceButton from "../price_button";
-import { useMemo } from "react";
+import { Fragment, useMemo } from "react";
 import PriceCard from "../price_button/price_card";
 
 type ProductItem = {
@@ -56,12 +56,11 @@ export default function Home({
     [items]
   );
 
-  console.log(product_items);
   return (
     <main className="bg-white text-gray-700">
       <div className="flex flex-wrap justify-between">
         {product_items?.map((item) => (
-          <>
+          <Fragment key={item.product_id}>
             <div className="w-full md:w-1/3 p-4">
               <div className="max-w-sm rounded overflow-hidden shadow-lg">
                 <img className="w-full" src={`/${item.d_image}`} />
@@ -94,7 +93,7 @@ export default function Home({
                 />
               )) || <PriceCard key={item.product_id} price={item.price} />}
             </div> */}
-          </>
+          </Fragment>
         ))}
       </div>
     </main>

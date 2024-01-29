@@ -1,0 +1,25 @@
+.del_btn {
+    position: relative;
+    outline: 0;
+
+    cursor: pointer;
+    text-transform: uppercase;
+    white-space: nowrap;
+
+    color: #e5334b;
+    text-decoration: none;
+    box-shadow: none;
+    background-color: transparent;
+    padding-right: 1.3rem;
+}
+
+.del_btn::after {
+    position: absolute;
+    top: 3px;
+    right: 0;
+    bottom: 0;
+    content: "";
+    width: 0.9375rem;
+    background: url(/arrow.svg) center/100% auto no-repeat;
+    height: 18px;
+}

@@ -1,0 +1,26 @@
+/* .order__select::after {
+    position: relative;
+    bottom: 33%;
+    left: 45%;
+    height: 0.3125rem;
+    width: 0.625rem;
+    content: "";
+    border-top: 0.3125rem solid #b4b4b4;
+    border-right: 0.3125rem solid transparent;
+    border-left: 0.3125rem solid transparent;
+    transform: translateY(-50%);
+} */
+
+.order__select_ {
+    padding-right: 0.625rem;
+    padding-left: 0.625rem;
+    appearance: none;
+    border: 1px solid rgb(211, 211, 211);
+    outline: 0;
+    background-color: transparent;
+    font-family: inherit;
+    font-weight: 400;
+    line-height: 2.25rem;
+    color: #e5334b;
+    cursor: pointer;
+}

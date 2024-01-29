@@ -1,8 +1,19 @@
 import AuthModal from "@/app/components/auth_modal";
 import Breadcrumb from "@/app/components/breadcrumb";
 import Products from "@/app/components/products/products";
+import Modal from "@/app/components/modal";
+import DeliveryModalComponent from "@/app/components/delivery_modal";
+import PickupModalComponent from "@/app/components/pickup_modal";
+// import FutureOrderModalComponent from "@/app/components/future_order_modal";
+import Select from "@/app/components/Select";
+
 import DeliverySignInModal from "@/app/components/delivery_signin_modal";
-import { useState } from "react";
+import MainModalComponent from "@/app/components/pizza_delivery";
+import { useCallback, useState } from "react";
+import DeliveryModal from "@/app/components/main_modal_content";
+import OrderModal from "@/app/components/main_modal_content/orders_modal";
+
+import "./index.css";
 
 async function getData() {
   const form_data = new FormData();
@@ -31,7 +42,11 @@ async function Specials() {
 
   return (
     <article>
-      {isLoggedIn && <DeliverySignInModal />}
+      {!isLoggedIn && (
+        <MainModalComponent>
+          <DeliveryModal />
+        </MainModalComponent>
+      )}
       <Breadcrumb title="Menu" href="/menu/" />
       <div className="container container--slim--y">
         <div className="flexrow">

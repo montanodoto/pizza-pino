@@ -1,3 +1,11 @@
+function transformPhoneNumber(input: string) {
+  const phone_num = Number(input);
+
+  const pattern = /\((\d{3})\) (\d{3})-(\d{4})/;
+  // You can modify the replacement pattern as needed
+  return phone_num.toString().replace(pattern, "($1) $2-$3");
+}
+
 export default function DeliverySignInModal() {
   return (
     <div className="modal modal--active modal--visible" id="userAuthModal">

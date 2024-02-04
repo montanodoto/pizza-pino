@@ -13,7 +13,7 @@ function Products({
   return (
     <>
       <ul className="accordion accordion--menu">
-        {products.map((p, idx) => (
+        {products.map((p: any, idx: number) => (
           <li className="accordion--menu__item" key={idx}>
             <a
               href="/menu/specials"

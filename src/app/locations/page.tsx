@@ -3,8 +3,10 @@ import options from "./data";
 
 function Locations() {
   return (
-    <div className="container container--slim--y">
-      <Breadcrumb title="Locations" href="/locations/" />
+    <div className="container--slim--y container">
+      <Breadcrumb
+        breadcrumb_items={[{ title: "Locations", href: "/location/" }]}
+      />
 
       <div className="flexrow">
         <div className="flexrow__column flexrow__column--content">
@@ -38,7 +40,7 @@ function Locations() {
                       {options.map((o) => (
                         <option key={o.name}>
                           {o.name.replace(/(?:^|_)(\w)/g, (_, char) =>
-                            char.toUpperCase()
+                            char.toUpperCase(),
                           )}
                         </option>
                       ))}

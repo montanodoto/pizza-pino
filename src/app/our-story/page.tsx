@@ -2,8 +2,10 @@ import Breadcrumb from "../components/breadcrumb";
 
 function OurStory() {
   return (
-    <div className="container container--slim--y">
-      <Breadcrumb title="Out Story" href="/our-story/" />
+    <div className="container--slim--y container">
+      <Breadcrumb
+        breadcrumb_items={[{ title: "Our Story", href: "/our-story/" }]}
+      />
       <div className="flexrow">
         <div className="flexrow__column flexrow__column--content">
           <div className="flexrow__gutter">

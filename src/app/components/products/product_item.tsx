@@ -1,19 +1,8 @@
-import { ReactNode } from "react";
-import PriceCard from "../price_button/price_card";
-
-// components/ProductItem.js or src/components/ProductItem.js
-type ProductItemProps = {
-  title: string;
-  description: string;
-  price?: ReactNode;
-  imageUrl: string;
-  altText: string;
-};
+import type { ProductItemProps } from "./types";
 
 export default function ProductItem({
   title,
   description,
-  price,
   imageUrl,
   altText,
 }: ProductItemProps) {

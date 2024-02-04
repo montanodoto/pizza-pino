@@ -1,10 +1,8 @@
 "use client";
 import { useCallback, useState } from "react";
 import DatePicker from "react-datepicker";
-// import { useRouter } from "next/router";
 import "react-datepicker/dist/react-datepicker.css";
 
-import Select from "@/app/components/Select";
 import { PrimaryButton, SecondaryButton } from "./button";
 
 export default function OrderModal() {

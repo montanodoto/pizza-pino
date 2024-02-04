@@ -7,33 +7,29 @@ function Products({
 }: {
   products: { subgroup: Record<string, any> };
 }) {
-  const [
-    {
-      items: { item: products },
-      ...rest
-    },
-    setProducts,
-  ] = useState(initial_products.subgroup);
+  const [products, setProducts] = useState(initial_products.subgroup);
 
+  console.log(products);
   return (
     <>
       <ul className="accordion accordion--menu">
-        <li className="accordion--menu__item">
-          <a
-            href="/menu/specials"
-            title="Specials"
-            rel="specialsContent"
-            className="accordion--menu__item__link accordion--menu__item__link--specials open"
-            id="specialsLink"
-          >
-            Specials
-          </a>
-          <ul
-            id="specialsContent"
-            className="accordion--menu__item__content flexrow visible"
-            rel="01"
-          >
-            {products.map((p: any) => (
+        {products.map((p, idx) => (
+          <li className="accordion--menu__item" key={idx}>
+            <a
+              href="/menu/specials"
+              title="Specials"
+              rel="specialsContent"
+              className="accordion--menu__item__link accordion--menu__item__link--specials open"
+              id="specialsLink"
+            >
+              Specials
+            </a>
+            <ul
+              id="specialsContent"
+              className="accordion--menu__item__content flexrow visible"
+              rel="01"
+            >
+              {/* {products.map((p: any) => (
               <li
                 className="flexrow__column flexrow__column--menu"
                 key={p.product_id}
@@ -88,191 +84,10 @@ function Products({
                   </span>
                 </span>
               </li>
-            ))}
-          </ul>
-        </li>
-        <li className="accordion--menu__item">
-          <a
-            href="/menu/gourmetpizzas"
-            title="Gourmet Pizzas"
-            rel="gourmetpizzasContent"
-            className="accordion--menu__item__link accordion--menu__item__link--gourmetpizzas"
-            id="gourmetpizzasLink"
-          >
-            Gourmet Pizzas
-          </a>
-          <ul
-            id="gourmetpizzasContent"
-            className="accordion--menu__item__content flexrow"
-            rel="02"
-          >
-            <li className="flexrow__column flexrow__column--menu">
-              <span className="flexrow__gutter flexrow__gutter--no-border flexrow__gutter--slim-y">
-                <img
-                  src="/dist/img/loading.gif"
-                  alt="Loading…"
-                  className="loading"
-                />
-              </span>
-            </li>
-          </ul>
-        </li>
-        <li className="accordion--menu__item">
-          <a
-            href="/menu/pizzas"
-            title="Pizzas"
-            rel="pizzasContent"
-            className="accordion--menu__item__link accordion--menu__item__link--pizzas"
-            id="pizzasLink"
-          >
-            Pizzas
-          </a>
-          <ul
-            id="pizzasContent"
-            className="accordion--menu__item__content flexrow"
-            rel="03"
-          >
-            <li className="flexrow__column flexrow__column--menu">
-              <span className="flexrow__gutter flexrow__gutter--no-border flexrow__gutter--slim-y">
-                <img
-                  src="/dist/img/loading.gif"
-                  alt="Loading…"
-                  className="loading"
-                />
-              </span>
-            </li>
-          </ul>
-        </li>
-        <li className="accordion--menu__item">
-          <a
-            href="/menu/wings"
-            title="Wings"
-            rel="wingsContent"
-            className="accordion--menu__item__link accordion--menu__item__link--wings"
-            id="wingsLink"
-          >
-            Wings
-          </a>
-          <ul
-            id="wingsContent"
-            className="accordion--menu__item__content flexrow"
-            rel="04"
-          >
-            <li className="flexrow__column flexrow__column--menu">
-              <span className="flexrow__gutter flexrow__gutter--no-border flexrow__gutter--slim-y">
-                <img
-                  src="/dist/img/loading.gif"
-                  alt="Loading…"
-                  className="loading"
-                />
-              </span>
-            </li>
-          </ul>
-        </li>
-        <li className="accordion--menu__item">
-          <a
-            href="/menu/sides"
-            title="Sides"
-            rel="sidesContent"
-            className="accordion--menu__item__link accordion--menu__item__link--sides"
-            id="sidesLink"
-          >
-            Sides
-          </a>
-          <ul
-            id="sidesContent"
-            className="accordion--menu__item__content flexrow"
-            rel="05"
-          >
-            <li className="flexrow__column flexrow__column--menu">
-              <span className="flexrow__gutter flexrow__gutter--no-border flexrow__gutter--slim-y">
-                <img
-                  src="/dist/img/loading.gif"
-                  alt="Loading…"
-                  className="loading"
-                />
-              </span>
-            </li>
-          </ul>
-        </li>
-        <li className="accordion--menu__item">
-          <a
-            href="/menu/beverages"
-            title="Beverages"
-            rel="beveragesContent"
-            className="accordion--menu__item__link accordion--menu__item__link--beverages"
-            id="beveragesLink"
-          >
-            Beverages
-          </a>
-          <ul
-            id="beveragesContent"
-            className="accordion--menu__item__content flexrow"
-            rel="06"
-          >
-            <li className="flexrow__column flexrow__column--menu">
-              <span className="flexrow__gutter flexrow__gutter--no-border flexrow__gutter--slim-y">
-                <img
-                  src="/dist/img/loading.gif"
-                  alt="Loading…"
-                  className="loading"
-                />
-              </span>
-            </li>
-          </ul>
-        </li>
-        <li className="accordion--menu__item">
-          <a
-            href="/menu/desserts"
-            title="Desserts"
-            rel="dessertsContent"
-            className="accordion--menu__item__link accordion--menu__item__link--desserts"
-            id="dessertsLink"
-          >
-            Desserts
-          </a>
-          <ul
-            id="dessertsContent"
-            className="accordion--menu__item__content flexrow"
-            rel="07"
-          >
-            <li className="flexrow__column flexrow__column--menu">
-              <span className="flexrow__gutter flexrow__gutter--no-border flexrow__gutter--slim-y">
-                <img
-                  src="/dist/img/loading.gif"
-                  alt="Loading…"
-                  className="loading"
-                />
-              </span>
-            </li>
-          </ul>
-        </li>
-        <li className="accordion--menu__item">
-          <a
-            href="/menu/panzerotti"
-            title="Panzerotti"
-            rel="panzerottiContent"
-            className="accordion--menu__item__link accordion--menu__item__link--panzerotti"
-            id="panzerottiLink"
-          >
-            Panzerotti
-          </a>
-          <ul
-            id="panzerottiContent"
-            className="accordion--menu__item__content flexrow"
-            rel="08"
-          >
-            <li className="flexrow__column flexrow__column--menu">
-              <span className="flexrow__gutter flexrow__gutter--no-border flexrow__gutter--slim-y">
-                <img
-                  src="/dist/img/loading.gif"
-                  alt="Loading…"
-                  className="loading"
-                />
-              </span>
-            </li>
-          </ul>
-        </li>
+            ))} */}
+            </ul>
+          </li>
+        ))}
       </ul>
     </>
   );

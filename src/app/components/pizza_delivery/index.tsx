@@ -1,6 +1,4 @@
-// components/MainModalComponent.js
 "use client";
-import { useState } from "react";
 
 const MainModalComponent = ({ children }: any) => {
   return (

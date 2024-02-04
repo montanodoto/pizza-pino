@@ -4,9 +4,9 @@ import "./index.css";
 const Select = ({ options, placeholder, value, onChange }: any) => {
   console.log(options);
   return (
-    <div className="w-full m-1 order__select">
+    <div className="order__select" style={{ flexGrow: "1" }}>
       <select
-        className="block order__select_ appearance-none w-full bg-white border border-gray-400 px-4 py-2 pr-8 shadow leading-tight focus:outline-none focus:shadow-outline"
+        className="order__select_ focus:shadow-outline block w-full appearance-none border border-gray-400 bg-white px-4 py-2 pr-8 leading-tight shadow focus:outline-none"
         value={value}
         onChange={(e) => onChange(e.target.value)}
       >

@@ -31,7 +31,7 @@ export default function New_Address() {
                     Welcome Back, Gabriel
                   </h1>
                   <h2 className="title title--large--subtitle gutter--bottom--none">
-                    Change or add to your Gino's Pizza Inc. account information.
+                    Change or add to your Ginos Pizza Inc. account information.
                   </h2>
                   <hr />
                   <ul

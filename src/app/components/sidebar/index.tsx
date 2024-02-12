@@ -2,7 +2,7 @@
 import { useMemo } from "react";
 
 export default function Sidebar({ cart_summary }: any) {
-  const { price, name, topping_price } = useMemo(() => {
+  const product_info = useMemo(() => {
     if (typeof window !== "undefined") {
       const product_info = JSON.parse(
         window.localStorage.getItem("product_info") as any
@@ -14,13 +14,14 @@ export default function Sidebar({ cart_summary }: any) {
     }
     return { price: "", name: "", topping_price: "" };
   }, []);
+  const { price, name, topping_price } = product_info;
 
   return (
     <>
       <div className="flexrow__column flexrow__column--sidebar">
         <div className="flexrow__gutter">
           <div className="flexrow__column--sidebar__backdrop">
-            {cart_summary ? (
+            {product_info && cart_summary ? (
               <div className="flexrow__gutter flexrow__gutter--double">
                 <header className="widget__header widget__header--icon widget__header--icon--cart">
                   Your Cart

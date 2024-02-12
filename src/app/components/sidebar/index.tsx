@@ -1,8 +1,14 @@
 "use client";
+
+import { useMemo } from "react";
+
 export default function Sidebar({ cart_summary }: any) {
-  const { price, name, topping_price } = JSON.parse(
-    localStorage.getItem("product_info") as any
-  );
+  const { price, name, topping_price } = useMemo(() => {
+    if (typeof window !== "undefined") {
+      return JSON.parse(window.localStorage.getItem("product_info") as any);
+    }
+    return { price: "", name: "", topping_price: "" };
+  }, []);
 
   return (
     <>

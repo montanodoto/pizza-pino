@@ -1,5 +1,4 @@
 "use client";
-
 import { useMemo } from "react";
 
 export default function Sidebar({ cart_summary }: any) {
@@ -99,14 +98,15 @@ export default function Sidebar({ cart_summary }: any) {
                       Total:
                     </span>
                   </span>
-                  <span className="flexrow__column flexrow__column--cart-summary--total">
-                    <span className="cart__item__gutter cart__item__gutter--slim-y">
-                      <strong>
-                        {" "}
-                        ${Number(price) + Number(topping_price)}{" "}
-                      </strong>
+                  {price && (
+                    <span className="flexrow__column flexrow__column--cart-summary--total">
+                      <span className="cart__item__gutter cart__item__gutter--slim-y">
+                        <strong>
+                          ${Number(price) + Number(topping_price)}
+                        </strong>
+                      </span>
                     </span>
-                  </span>
+                  )}
                 </span>
                 <a
                   href="/cart/"

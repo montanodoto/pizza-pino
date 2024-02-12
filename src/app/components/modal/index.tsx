@@ -29,7 +29,7 @@ export default function Modal({
 
   const on_modal_change = useCallback(
     (type: MODAL_CONTENT_TYPE) => set_modal_content_type(type),
-    [],
+    []
   );
 
   useEffect(() => {
@@ -65,11 +65,13 @@ export default function Modal({
                         </p>
                         {modal_content_type === "DELIVERY" && (
                           <DeliveryModal
+                            on_modal_close={on_modal_close}
                             on_continue={() => on_modal_change("ORDER")}
                           />
                         )}
                         {modal_content_type === "ORDER" && (
                           <OrderModal
+                            on_modal_close={on_modal_close}
                             on_continue={() => on_modal_change("ORDER")}
                           />
                         )}
@@ -81,7 +83,7 @@ export default function Modal({
             </div>
           </div>
         </div>,
-        ref.current,
+        ref.current
       )
     : null;
 }

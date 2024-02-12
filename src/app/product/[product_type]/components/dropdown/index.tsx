@@ -28,7 +28,11 @@ export default function Dropdown({ is_dipping_sauce }: any) {
   >([]);
 
   const set_classname = (idx: number) =>
-    `${selected_idx === idx ? "card card--topping card--topping--open" : "card card--topping"}`;
+    `${
+      selected_idx === idx
+        ? "card card--topping card--topping--open"
+        : "card card--topping"
+    }`;
 
   const set_hr_classname = (idx: number) =>
     idx === selected_idx
@@ -75,7 +79,7 @@ export default function Dropdown({ is_dipping_sauce }: any) {
                 <hr className={set_hr_classname(1)} />
                 <div id="toppingMeatsList0" className="card--topping__list">
                   {sauces.map((t, idx) => (
-                    <DropdownItem title={t} key={t} />
+                    <DropdownItem title={t} key={t} active={idx === 0} />
                   ))}
                 </div>
               </div>
@@ -85,7 +89,7 @@ export default function Dropdown({ is_dipping_sauce }: any) {
                 <hr className={set_hr_classname(2)} />
                 <div id="toppingMeatsList0" className="card--topping__list">
                   {sauce_ammount.map((t, idx) => (
-                    <DropdownItem title={t} key={t} />
+                    <DropdownItem title={t} key={t} active={idx === 0} />
                   ))}
                 </div>
               </div>
@@ -95,7 +99,7 @@ export default function Dropdown({ is_dipping_sauce }: any) {
                 <hr className={set_hr_classname(3)} />
                 <div id="toppingMeatsList0" className="card--topping__list">
                   {crust_type.map((t, idx) => (
-                    <DropdownItem title={t} key={t} />
+                    <DropdownItem title={t} key={t} active={idx === 0} />
                   ))}
                 </div>
               </div>
@@ -105,7 +109,7 @@ export default function Dropdown({ is_dipping_sauce }: any) {
                 <hr className={set_hr_classname(4)} />
                 <div id="toppingMeatsList0" className="card--topping__list">
                   {cook.map((t, idx) => (
-                    <DropdownItem title={t} key={t} />
+                    <DropdownItem title={t} key={t} active={idx === 0} />
                   ))}
                 </div>
               </div>

@@ -9,24 +9,29 @@ import DeliveryContent from "./delivery_content";
 
 type DeliveryModalProps = {
   on_continue: () => void;
+  on_modal_close: () => any;
 };
 
-export default function DeliveryModal({ on_continue }: DeliveryModalProps) {
+export default function DeliveryModal({
+  on_continue,
+  on_modal_close,
+}: DeliveryModalProps) {
   const [modal_content, set_modal_content] = useState("");
 
   const on_delivery_click = useCallback(
     () => set_modal_content("delivery"),
-    [],
+    []
   );
   const on_pickup_click = useCallback(() => set_modal_content("pickup"), []);
 
   const handle_pickup_continue = useCallback(() => {
     // on_modal_change("order");
-    console.log(on_continue);
-    on_continue();
-  }, [on_continue]);
+    on_modal_close();
+  }, [on_modal_close]);
 
-  const handle_delivery_continue = useCallback(() => {}, []);
+  const handle_delivery_continue = useCallback(() => {
+    on_modal_close();
+  }, [on_modal_close]);
 
   return (
     <>
@@ -36,7 +41,9 @@ export default function DeliveryModal({ on_continue }: DeliveryModalProps) {
       </div>
 
       <div
-        className={`w-[525px] ${modal_content === "pickup" ? "ml-auto mr-[3px]" : "ml-[3px]"}`}
+        className={`w-[525px] ${
+          modal_content === "pickup" ? "ml-auto mr-[3px]" : "ml-[3px]"
+        }`}
       >
         <PickupContent
           modal_type={modal_content}

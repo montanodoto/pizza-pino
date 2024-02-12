@@ -2,12 +2,21 @@
 import Link from "next/link";
 import "./index.css";
 
-export default function PriceCard({ title, price, href }: any) {
+export default function PriceCard({ title, price, href, topping_price }: any) {
   return (
-    <Link href={`/product/${href}`} replace>
+    <Link
+      href={`/product/${href}`}
+      onClick={() =>
+        localStorage.setItem(
+          "product_info",
+          JSON.stringify({ price, topping_price, name: href })
+        )
+      }
+      replace
+    >
       <div
         style={{ padding: "1rem 0 1rem 0" }}
-        className="pizza-container flex-column m-1 h-[66px] w-[111px] items-center justify-center rounded-sm border border-gray-300 bg-white p-2 text-center shadow-md transition-colors duration-150 hover:bg-red-500 hover:text-white"
+        className="pizza-container flex-column m-1 h-[66px] w-[88px] items-center justify-center rounded-sm border border-gray-300 bg-white p-2 text-center shadow-md transition-colors duration-150 hover:bg-red-500 hover:text-white"
       >
         <div className="pizza-wrapper flex items-center justify-center">
           <div className="pizza-icon"></div>

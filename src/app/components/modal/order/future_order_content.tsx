@@ -8,6 +8,7 @@ import "react-datepicker/dist/react-datepicker.css";
 type FutureOrderContentProps = {
   on_continue: (props: { selected_address: string }) => void;
   modal_type: string;
+  on_modal_close: () => any;
 };
 
 const hours = [
@@ -29,6 +30,7 @@ const hours = [
 export default function FutureOrderContent({
   modal_type,
   on_continue,
+  on_modal_close,
 }: FutureOrderContentProps) {
   const [selectedDate, setSelectedDate] = useState(null);
 

@@ -24,6 +24,7 @@ export type ProductItem = {
 };
 
 export type ProductProps = {
+  opened_dropdown_index: number;
   // products: {
   //   subgroup: {
   //     name: string;

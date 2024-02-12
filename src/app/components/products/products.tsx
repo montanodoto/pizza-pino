@@ -4,9 +4,14 @@ import PriceCard from "../price_button/price_card";
 
 import type { ProductProps } from "./types";
 
-export default function Products({ products }: ProductProps) {
-  const [active_dropdown_idx, set_active_dropdown_idx] = useState<number>();
-
+export default function Products({
+  products,
+  opened_dropdown_index,
+}: ProductProps) {
+  const [active_dropdown_idx, set_active_dropdown_idx] = useState<number>(
+    () => opened_dropdown_index
+  );
+  console.log(products);
   const products_list = useMemo(
     () =>
       products
@@ -42,10 +47,9 @@ export default function Products({ products }: ProductProps) {
             ? Object.values(product.avail_sizes)
             : null,
         })),
-    [products],
+    [products]
   );
 
-  console.log("products_list", products_list);
   return (
     <main className="bg-white text-gray-700">
       <div className="flex flex-wrap justify-between">
@@ -59,14 +63,18 @@ export default function Products({ products }: ProductProps) {
               <a
                 title="Specials"
                 rel="specialsContent"
-                className={`accordion--menu__item__link accordion--menu__item__link--specials ${active_dropdown_idx === idx && "open"}`}
+                className={`accordion--menu__item__link accordion--menu__item__link--specials ${
+                  active_dropdown_idx === idx && "open"
+                }`}
                 id="specialsLink"
               >
                 {p.name}
               </a>
               <ul
                 id="specialsContent"
-                className={`accordion--menu__item__content flexrow ${active_dropdown_idx === idx && "visible"}`}
+                className={`accordion--menu__item__content flexrow ${
+                  active_dropdown_idx === idx && "visible"
+                }`}
                 rel={`0${idx + 1}`}
               >
                 {!p.subgroup
@@ -84,20 +92,27 @@ export default function Products({ products }: ProductProps) {
                                   {item.long_desc}
                                 </p>
                               )}
-                              <div className="flex">
+                              <div className="flex flex-wrap justify-center">
                                 {item.avail_sizes ? (
                                   item.avail_sizes.map(
-                                    ({ product_id, size, price }: any) => (
+                                    ({
+                                      product_id,
+                                      size,
+                                      price,
+                                      topping_price,
+                                    }: any) => (
                                       <PriceCard
+                                        topping_price={topping_price}
                                         href={item.description}
                                         key={product_id}
                                         title={size.toUpperCase()}
                                         price={price}
                                       />
-                                    ),
+                                    )
                                   )
                                 ) : (
                                   <PriceCard
+                                    topping_price={item.topping_price}
                                     href={item.description}
                                     title={"Buy Now"}
                                     price={item.price}
@@ -126,17 +141,24 @@ export default function Products({ products }: ProductProps) {
                               <div className="flex">
                                 {item.avail_sizes ? (
                                   item.avail_sizes.map(
-                                    ({ product_id, size, price }: any) => (
+                                    ({
+                                      product_id,
+                                      size,
+                                      price,
+                                      topping_price,
+                                    }: any) => (
                                       <PriceCard
+                                        topping_price={topping_price}
                                         href={item.description}
                                         key={product_id}
                                         title={size.toUpperCase()}
                                         price={price}
                                       />
-                                    ),
+                                    )
                                   )
                                 ) : (
                                   <PriceCard
+                                    topping_price={item.topping_price}
                                     title={"Buy Now"}
                                     href={item.description}
                                     price={item.price}

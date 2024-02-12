@@ -9,7 +9,6 @@ function Products({
 }) {
   const [products, setProducts] = useState(initial_products.subgroup);
 
-  console.log(products);
   return (
     <>
       <ul className="accordion accordion--menu">

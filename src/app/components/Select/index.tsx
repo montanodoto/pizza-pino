@@ -2,7 +2,6 @@
 import "./index.css";
 
 const Select = ({ options, placeholder, value, onChange }: any) => {
-  console.log(options);
   return (
     <div className="order__select" style={{ flexGrow: "1" }}>
       <select

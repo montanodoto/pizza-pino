@@ -3,6 +3,7 @@ import { SecondaryButton } from "../button";
 type OrderNowContentProps = {
   on_continue: (props: { selected_address: string }) => void;
   modal_type: string;
+  on_modal_close: () => any;
 };
 
 export default function OrderNowContent({

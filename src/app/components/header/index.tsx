@@ -13,14 +13,14 @@ const nav_elements = [
       {
         title: "Gourmet Pizzas",
         name: "Gourmet Pizzas",
-        href: "/menu/gourmetpizzas/",
+        href: "/menu/gourment/",
       },
       { title: "Pizzas", name: "Pizzas", href: "/menu/pizzas/" },
       { title: "Wings", name: "Wings", href: "/menu/wings/" },
       { title: "Sides", name: "Sides", href: "/menu/sides/" },
       {
-        title: "Desserts &amp; Chips",
-        name: "Desserts &amp; Chips",
+        title: "Desserts and Chips",
+        name: "Desserts and Chips",
         href: "/menu/desserts/",
       },
       { title: "Panzerotti", name: "Panzerotti", href: "/menu/panzerotti/" },
@@ -44,7 +44,7 @@ function Header() {
   return (
     <>
       <header id="userBar" className="top-bar">
-        <div className="container container--user">
+        <div className="container--user container">
           <span className="top-bar__store">
             <a
               href="/locations/"
@@ -78,7 +78,7 @@ function Header() {
           pathname === "menu" && "navbar--stuck"
         }`}
       >
-        <div className="container container--navbar">
+        <div className="container--navbar container">
           <a
             href="/"
             title="Gino's Pizza Inc."

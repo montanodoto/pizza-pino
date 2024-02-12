@@ -8,11 +8,11 @@ import "./index.css";
 import Hero from "../hero";
 
 const pictures = [
-  "/10kGiftCard.png?ver=2024.1.6",
-  "/NowOpenBaylySt.png?ver=2024.1.6",
-  "/MustangWinner.png?ver=2024.1.6",
-  "/OpeningSoon2024.png?ver=2024.1.6",
-  "/tandoori-chicken-banner.png?ver=2024.1.6",
+  "/10kGiftCard.png",
+  "/NowOpenBaylySt.png",
+  "/MustangWinner.png",
+  "/OpeningSoon2024.png",
+  "/tandoori-chicken-banner.png",
 ];
 
 function Main() {
@@ -23,9 +23,9 @@ function Main() {
     const slide_interval = setInterval(
       () =>
         setCurrentSlide((prevSlide) =>
-          currentSlide === 4 ? 0 : prevSlide + 1
+          currentSlide === 4 ? 0 : prevSlide + 1,
         ),
-      2000
+      2000,
     );
 
     return () => {
@@ -128,7 +128,7 @@ function Main() {
                   {locations.map((location) => (
                     <option value={location} key={location}>
                       {location.replace(/(?:^|_)(\w)/g, (_, char) =>
-                        char.toUpperCase()
+                        char.toUpperCase(),
                       )}
                     </option>
                   ))}
@@ -147,7 +147,7 @@ function Main() {
             </form>
           </div>
         </section>
-        <div className="container container--slim--y">
+        <div className="container--slim--y container">
           <hr className="gutter--top--none gutter--bottom--none" />
         </div>
         <section id="newsletterSignUp">
@@ -178,7 +178,7 @@ function Main() {
             </div>
           </div>
         </section>
-        <div className="container container--slim--y">
+        <div className="container--slim--y container">
           <hr className="gutter--top--none gutter--bottom--none" />
         </div>
         <section id="franchiseSignUp">

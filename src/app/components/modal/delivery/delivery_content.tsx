@@ -39,7 +39,6 @@ export default function DeliveryContent({
         } = await fetch_response.json();
 
         if (Array.isArray(store)) {
-          console.log("Array.isArray(store)", stores);
           const store_list = store.map((s) => ({
             value: s.address,
             label: s.address,
@@ -48,7 +47,6 @@ export default function DeliveryContent({
           set_stores(store_list);
         } else {
           const { address, ...store_info } = store;
-          console.log("Object", stores);
           set_stores([{ value: address, label: address }]);
         }
       } catch (error) {

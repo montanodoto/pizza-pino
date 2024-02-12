@@ -9,9 +9,13 @@ import "react-datepicker/dist/react-datepicker.css";
 
 type OrderModalProps = {
   on_continue: () => void;
+  on_modal_close: () => any;
 };
 
-export default function OrderModal({ on_continue }: OrderModalProps) {
+export default function OrderModal({
+  on_continue,
+  on_modal_close,
+}: OrderModalProps) {
   const [modal_content, set_modal_content] = useState("");
 
   const on_order_click = useCallback(() => {
@@ -22,11 +26,11 @@ export default function OrderModal({ on_continue }: OrderModalProps) {
   }, []);
 
   const handle_future_order_continue = useCallback(() => {
-    on_continue();
-  }, [on_continue]);
+    on_modal_close();
+  }, [on_modal_close]);
   const handle_order_now_continue = useCallback(() => {
-    on_continue();
-  }, [on_continue]);
+    on_modal_close();
+  }, [on_modal_close]);
 
   return (
     <>
@@ -39,13 +43,17 @@ export default function OrderModal({ on_continue }: OrderModalProps) {
       </div>
 
       <div
-        className={`w-[525px] ${modal_content === "future_order" ? "ml-auto mr-[3px]" : "ml-[3px]"}`}
+        className={`w-[525px] ${
+          modal_content === "future_order" ? "ml-auto mr-[3px]" : "ml-[3px]"
+        }`}
       >
         <FutureOrderContent
+          on_modal_close={on_modal_close}
           modal_type={modal_content}
           on_continue={handle_future_order_continue}
         />
         <OrderNowContent
+          on_modal_close={on_modal_close}
           modal_type={modal_content}
           on_continue={handle_order_now_continue}
         />

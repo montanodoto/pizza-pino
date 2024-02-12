@@ -1,4 +1,9 @@
+"use client";
 export default function Sidebar({ cart_summary }: any) {
+  const { price, name, topping_price } = JSON.parse(
+    localStorage.getItem("product_info") as any
+  );
+
   return (
     <>
       <div className="flexrow__column flexrow__column--sidebar">
@@ -47,12 +52,12 @@ export default function Sidebar({ cart_summary }: any) {
                     </span>
                     <span className="cartSummary__item__component cartSummary__item__component--description">
                       <span className="cartSummary__item__gutter cartSummary__item__gutter--slim">
-                        (1) Two Can Dine Special
+                        (1) {name}
                       </span>
                     </span>
                     <span className="cartSummary__item__component cartSummary__item__component--price">
                       <span className="cartSummary__item__gutter cartSummary__item__gutter--slim">
-                        $16.00
+                        ${price}
                       </span>
                     </span>
                   </li>
@@ -66,7 +71,7 @@ export default function Sidebar({ cart_summary }: any) {
                   </span>
                   <span className="flexrow__column flexrow__column--cart-summary--total">
                     <span className="cart__item__gutter cart__item__gutter--slim-y">
-                      <strong> $16.00 </strong>
+                      <strong> ${price} </strong>
                     </span>
                   </span>
                 </span>
@@ -78,7 +83,7 @@ export default function Sidebar({ cart_summary }: any) {
                   </span>
                   <span className="flexrow__column flexrow__column--cart-summary--total">
                     <span className="cart__item__gutter cart__item__gutter--slim-y">
-                      <strong> $2.08 </strong>
+                      <strong> ${topping_price}</strong>
                     </span>
                   </span>
                 </span>
@@ -90,7 +95,10 @@ export default function Sidebar({ cart_summary }: any) {
                   </span>
                   <span className="flexrow__column flexrow__column--cart-summary--total">
                     <span className="cart__item__gutter cart__item__gutter--slim-y">
-                      <strong> $18.08 </strong>
+                      <strong>
+                        {" "}
+                        ${Number(price) + Number(topping_price)}{" "}
+                      </strong>
                     </span>
                   </span>
                 </span>

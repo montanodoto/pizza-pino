@@ -5,6 +5,8 @@ import Dropdown from "../dropdown";
 export default function PizzaContruction({ type }: any) {
   const [pizza_dropdown_idx, set_pizza_dropdown_idx] = useState(0);
 
+  const onAddCart = (product_id: number, checkout_data) => {};
+
   return (
     <div className="flexrow__gutter">
       <h1 className="title title--large title--trim-bottom">{type}</h1>
@@ -25,7 +27,9 @@ export default function PizzaContruction({ type }: any) {
             title="Two Can Dine Special"
             rel="2cdContent"
             onClick={() => set_pizza_dropdown_idx(0)}
-            className={`accordion--default__item__link ${pizza_dropdown_idx === 0 && "open"}`}
+            className={`accordion--default__item__link ${
+              pizza_dropdown_idx === 0 && "open"
+            }`}
             id="2cdLink"
           >
             {type}
@@ -38,7 +42,9 @@ export default function PizzaContruction({ type }: any) {
             href="#"
             title="2 Free Dipping Sauces"
             rel="2dipbContent"
-            className={`accordion--default__item__link ${pizza_dropdown_idx === 1 && "open"}`}
+            className={`accordion--default__item__link ${
+              pizza_dropdown_idx === 1 && "open"
+            }`}
             id="2dipbLink"
             onClick={() => set_pizza_dropdown_idx(1)}
           >
@@ -70,6 +76,7 @@ export default function PizzaContruction({ type }: any) {
                     className="button button--default"
                     data-qty="1"
                     data-cheese-modal="false"
+                    onClick={onAddCart}
                   >
                     Add to Cart
                   </button>

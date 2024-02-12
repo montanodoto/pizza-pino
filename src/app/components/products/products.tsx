@@ -11,7 +11,6 @@ export default function Products({
   const [active_dropdown_idx, set_active_dropdown_idx] = useState<number>(
     () => opened_dropdown_index
   );
-  console.log(products);
   const products_list = useMemo(
     () =>
       products

@@ -1,10 +1,7 @@
-import MainModalComponent from "@/app/components/pizza_delivery";
-import DeliveryModal from "@/app/components/modal/delivery";
 import Breadcrumb from "@/app/components/breadcrumb";
 import Products from "@/app/components/products/products";
 
 import Modal from "@/app/components/modal";
-import OrderModal from "@/app/components/modal/order";
 import Sidebar from "@/app/components/sidebar";
 import "../menu.css";
 
@@ -25,13 +22,13 @@ async function getData() {
         return fetch("https://ginospizza.ca/app/api/menu/group/", {
           ...requestOptions,
         }).then((r) => r.json());
-      }),
+      })
     );
 
     const mapped_products = products.map((p, idx) =>
       Array.isArray(p.subgroup)
         ? { name: `Gourment Pizzas ${idx}`, items: p.subgroup }
-        : p.subgroup,
+        : p.subgroup
     );
 
     return { products: mapped_products, isLoggedIn: false };
@@ -69,6 +66,7 @@ async function Specials({ params }: any) {
     "panzerotti",
   ];
 
+  const setSelectedProduct = () => {};
   return (
     <article>
       {!isLoggedIn && <Modal />}

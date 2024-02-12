@@ -1,6 +1,4 @@
-type CardPageProps = {};
-
-export default function CartPage(props: CartPageProps) {
+export default function CartPage() {
   return (
     <>
       <div className="flexrow">
@@ -54,7 +52,7 @@ export default function CartPage(props: CartPageProps) {
                             <span className="display--block height--auto gutter--bottom--half">
                               <span className="cart__item__details__row__description__item">
                                 {" "}
-                                20" Round Americano{" "}
+                                20 Round Americano{" "}
                               </span>
                               <span className="display--block height--auto text--sm">
                                 <strong> Crust: </strong> Regular{" "}

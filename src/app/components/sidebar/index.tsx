@@ -4,7 +4,13 @@ import { useMemo } from "react";
 export default function Sidebar({ cart_summary }: any) {
   const { price, name, topping_price } = useMemo(() => {
     if (typeof window !== "undefined") {
-      return JSON.parse(window.localStorage.getItem("product_info") as any);
+      const product_info = JSON.parse(
+        window.localStorage.getItem("product_info") as any
+      );
+
+      if (product_info) {
+        return product_info;
+      }
     }
     return { price: "", name: "", topping_price: "" };
   }, []);
